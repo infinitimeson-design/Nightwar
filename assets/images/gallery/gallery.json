@@ -3,8 +3,13 @@
     "title": "عکاسی تبلیغاتی و چیدمان",
     "folder": "advertising",
     "images": [
+      
       "01.webp",
-      "02.webp"
+      "02.webp",
+      "03.webp",
+      "04.webp",
+      "05.webp",
+      "06.webp"
     ]
   },
 
@@ -12,34 +17,69 @@
     "title": "عکاسی طلا و جواهر",
     "folder": "jewelry",
     "images": [
+      
       "01.webp",
-      "02.webp"
+      "02.webp",
+      "03.webp",
+      "04.webp",
+      "05.webp",
+      "06.webp"
     ]
   },
 
   "food": {
     "title": "عکاسی تبلیغاتی غذا",
     "folder": "food",
-    "images": []
+    "images": [
+      
+      "01.webp",
+      "02.webp",
+      "03.webp",
+      "04.webp",
+      "05.webp",
+      "06.webp"
+    ]
   },
 
   "industrial": {
     "title": "عکاسی صنعتی و زمینه سفید",
     "folder": "industrial",
     "images": [
-      "01.webp"
+      
+      "01.webp",
+      "02.webp",
+      "03.webp",
+      "04.webp",
+      "05.webp",
+      "06.webp"
     ]
   },
 
   "birthday": {
     "title": "عکاسی تولد و مهمانی",
     "folder": "birthday",
-    "images": []
+    "images": [
+      
+      "01.webp",
+      "02.webp",
+      "03.webp",
+      "04.webp",
+      "05.webp",
+      "06.webp"
+    ]
   },
 
   "wedding": {
     "title": "عکاسی مراسم عقد و ازدواج",
     "folder": "wedding",
-    "images": []
+    "images": [
+      
+      "01.webp",
+      "02.webp",
+      "03.webp",
+      "04.webp",
+      "05.webp",
+      "06.webp"
+    ]
   }
 }
