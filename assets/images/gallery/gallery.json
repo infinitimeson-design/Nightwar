@@ -1,0 +1,57 @@
+{
+  "advertising": {
+    "title": "عکاسی تبلیغاتی و چیدمان",
+    "folder": "advertising",
+    "images": [
+      "01.webp",
+      "02.webp"
+    ]
+  },
+
+  "jewelry": {
+    "title": "عکاسی طلا و جواهر",
+    "folder": "jewelry",
+    "images": [
+      "01.webp",
+      "02.webp"
+    ]
+  },
+
+  "food": {
+    "title": "عکاسی تبلیغاتی غذا",
+    "folder": "food",
+    "images": []
+  },
+
+  "industrial": {
+    "title": "عکاسی صنعتی و زمینه سفید",
+    "folder": "industrial",
+    "images": [
+      "01.webp"
+    ]
+  },
+
+  "glass": {
+    "title": "عکاسی شیشه و بلور",
+    "folder": "glass",
+    "images": []
+  },
+
+  "metal": {
+    "title": "عکاسی اجسام فلزی",
+    "folder": "metal",
+    "images": []
+  },
+
+  "birthday": {
+    "title": "عکاسی تولد و مهمانی",
+    "folder": "birthday",
+    "images": []
+  },
+
+  "wedding": {
+    "title": "عکاسی مراسم عقد و ازدواج",
+    "folder": "wedding",
+    "images": []
+  }
+}
