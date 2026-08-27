@@ -1,0 +1,76 @@
+/*
+  FOOTER SECTION.
+  Locked behavior (js/modules/footer-particles.js):
+  - particles are scattered from the moment the footer enters view
+  - they fully assemble into "SC DEV" only at the very bottom of the page
+  - the animation must never overshadow the footer text (text sits in its
+    own calm readable zone, per Master Copy Lock §27)
+  - the rAF loop pauses entirely while the footer is off-screen (perf)
+  - if WebGL/canvas is unavailable or prefers-reduced-motion is set, a plain
+    CSS fallback wordmark is shown instead — no particle system required
+*/
+
+footer {
+  position: relative;
+  padding: 0;
+  text-align: center;
+  border-top: 1px solid var(--glass-border);
+  background: #000;
+  overflow: hidden;
+}
+
+.footer-canvas {
+  display: block;
+  width: 100%;
+  height: 220px;
+}
+
+.footer-fallback-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  font-size: 34px;
+  letter-spacing: .08em;
+  color: var(--c-text);
+  opacity: 0;
+  font-weight: 700;
+  transition: opacity var(--t-cinematic) var(--ease-cinematic);
+}
+.footer-fallback-text.is-visible { opacity: 1; }
+
+.footer-inner {
+  position: relative;
+  z-index: 2;
+  padding: var(--space-2) var(--space-5) var(--space-8);
+}
+
+.footer-closing {
+  font-size: 13.5px;
+  color: var(--c-secondary);
+  margin: 0 0 var(--space-5);
+}
+
+.footer-nav {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-5);
+  font-size: 12px;
+  margin-bottom: var(--space-4);
+}
+.footer-nav a { color: rgba(248,238,223,.7); text-decoration: none; }
+
+.footer-icons {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-2);
+}
+
+.footer-credit {
+  font-size: 11px;
+  color: rgba(248,238,223,.4);
+  margin: var(--space-4) 0 0;
+}
