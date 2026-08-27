@@ -1,0 +1,73 @@
+/*
+  DESIGN TOKENS — single source of truth.
+  Every color, radius, spacing, shadow, and timing value used anywhere on the
+  site must come from here. To restyle a card, a button, or the whole palette,
+  edit ONLY this file — never hardcode a color/size inside a component file.
+*/
+:root{
+  /* ---- Locked color palette (hex only — never introduce a 5th color) ---- */
+  --c-black: #000000;
+  --c-burgundy: #8E1616;
+  --c-beige: #E8C999;
+  --c-cream: #F8EEDF;
+
+  /* semantic aliases — components reference these, not the raw colors above */
+  --c-bg: var(--c-black);
+  --c-accent: var(--c-burgundy);
+  --c-secondary: var(--c-beige);
+  --c-text: var(--c-cream);
+  --c-text-dim: rgba(248, 238, 223, 0.72);
+  --c-text-dimmer: rgba(248, 238, 223, 0.5);
+
+  /* glass / surfaces (Dark Liquid Glass only — never white/milky/blue) */
+  --glass-bg: rgba(255, 255, 255, 0.035);
+  --glass-bg-strong: rgba(255, 255, 255, 0.06);
+  --glass-border: rgba(232, 201, 153, 0.14);
+  --glass-border-strong: rgba(232, 201, 153, 0.3);
+
+  /* accent surfaces */
+  --accent-bg: rgba(142, 22, 22, 0.28);
+  --accent-bg-strong: rgba(142, 22, 22, 0.55);
+  --accent-border: rgba(142, 22, 22, 0.6);
+  --accent-glow: rgba(142, 22, 22, 0.6);
+
+  /* ---- Typography ---- */
+  --font-primary: 'Estedad', 'Vazirmatn', -apple-system, 'Segoe UI', Tahoma, sans-serif;
+  --fs-eyebrow: 11px;
+  --fs-body: 14px;
+  --fs-body-sm: 12.5px;
+  --fs-title: 26px;
+  --fs-hero: 32px;
+
+  /* ---- Spacing scale ---- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 32px;
+  --space-8: 40px;
+
+  /* ---- Radius scale ---- */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+  --radius-xl: 22px;
+  --radius-pill: 100px;
+
+  /* ---- Shadow ---- */
+  --shadow-soft: 0 8px 24px -10px rgba(0, 0, 0, 0.6);
+  --shadow-deep: 0 20px 40px -16px rgba(0, 0, 0, 0.8);
+  --shadow-accent: 0 8px 24px -10px var(--accent-glow);
+
+  /* ---- Motion timing (locked ranges from Master Build Prompt) ---- */
+  --t-micro: 220ms;      /* micro interactions: 160–280ms */
+  --t-component: 480ms;  /* component transitions: 350–650ms */
+  --t-cinematic: 1100ms; /* cinematic reveals: 700–1400ms */
+  --ease-cinematic: cubic-bezier(.22, .61, .16, 1);
+
+  /* ---- Blur-to-focus reveal system (locked, spaitial.ai-inspired) ---- */
+  --reveal-blur-max: 10px;
+  --reveal-translate: 24px;
+}

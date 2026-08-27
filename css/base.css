@@ -1,0 +1,117 @@
+/* BASE — reset + global page setup. No component-specific rules belong here. */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--c-bg);
+  color: var(--c-text);
+  font-family: var(--font-primary);
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+body {
+  direction: rtl;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+h1, h2, h3, h4, h5, p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* film grain overlay — decorative, sits above content, never intercepts touch */
+.bg-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* burgundy vignette atmosphere — sits behind all content */
+.bg-atmosphere {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 45% at 50% 0%, rgba(142, 22, 22, .24), transparent 60%),
+    radial-gradient(ellipse 90% 55% at 50% 100%, rgba(142, 22, 22, .1), transparent 70%),
+    var(--c-black);
+}
+
+main {
+  position: relative;
+  z-index: 1;
+}
+
+section {
+  position: relative;
+  padding: var(--space-8) var(--space-5) var(--space-8);
+  overflow: hidden;
+}
+
+.eyebrow {
+  font-size: var(--fs-eyebrow);
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--c-secondary);
+  opacity: .85;
+  margin: 0 0 var(--space-2);
+}
+
+.section-title {
+  font-size: var(--fs-title);
+  line-height: 1.3;
+  margin: 0 0 var(--space-4);
+  font-weight: 600;
+}
+
+.lede {
+  font-size: var(--fs-body);
+  line-height: 1.9;
+  color: var(--c-text-dim);
+  max-width: 34ch;
+  margin: 0 0 var(--space-6);
+}
+
+/* scroll progress indicator */
+.scroll-progress {
+  position: fixed;
+  top: 0; right: 0; left: 0;
+  height: 2px;
+  background: var(--c-accent);
+  z-index: 60;
+  transform-origin: right;
+  transform: scaleX(0);
+  box-shadow: 0 0 12px var(--accent-glow);
+  pointer-events: none;
+}

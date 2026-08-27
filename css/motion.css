@@ -1,0 +1,74 @@
+/*
+  MOTION SYSTEM — the one shared animation language for the site.
+  Character: slow, controlled, cinematic, weighted. Never bouncy/elastic/flashy.
+  Only transform/opacity/filter are animated (composite-safe, never layout-triggering).
+
+  js/modules/motion-system.js sets --reveal-progress (0 → 1) on each
+  [data-reveal] element via IntersectionObserver. This file only defines how
+  that progress number maps to a visual effect — motion-system.js knows
+  nothing about blur amounts or timing curves, and this file knows nothing
+  about scroll math. That separation is intentional: an art-direction change
+  (e.g. more blur) is a CSS-only edit here.
+*/
+
+/* ---- Locked rule: progressive blur-to-focus on every text reveal ---- */
+[data-reveal] {
+  --reveal-progress: 0;
+  opacity: var(--reveal-progress);
+  filter: blur(calc((1 - var(--reveal-progress)) * var(--reveal-blur-max)));
+  transform: translateY(calc((1 - var(--reveal-progress)) * var(--reveal-translate)));
+  transition:
+    opacity var(--t-cinematic) var(--ease-cinematic),
+    filter var(--t-cinematic) var(--ease-cinematic),
+    transform var(--t-cinematic) var(--ease-cinematic);
+  will-change: opacity, filter, transform;
+}
+
+/* staggered children within a revealing section — each child reads its own
+   --reveal-progress, set by motion-system.js with a small index-based delay */
+[data-reveal-group] > [data-reveal] {
+  transition-delay: calc(var(--reveal-index, 0) * 90ms);
+}
+
+/* ---- Simple in/out reveal (no blur) for large structural blocks, e.g. cards,
+   the story panel, the roles panel — blur is reserved for text per the lock,
+   large surfaces just fade/slide ---- */
+[data-reveal-block] {
+  --reveal-progress: 0;
+  opacity: var(--reveal-progress);
+  transform: translateY(calc((1 - var(--reveal-progress)) * 28px));
+  transition: opacity var(--t-cinematic) var(--ease-cinematic), transform var(--t-cinematic) var(--ease-cinematic);
+}
+
+/* ---- Collapsible panels (story step, roles step, menu) ---- */
+.panel-collapse {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height var(--t-cinematic) var(--ease-cinematic), opacity var(--t-component) var(--ease-cinematic);
+}
+.panel-collapse.is-open {
+  max-height: 2000px;
+  opacity: 1;
+  margin-top: var(--space-5);
+}
+
+/* ---- Shared keyframes ---- */
+@keyframes fadeUpIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(6px); }
+}
+@keyframes rippleOut {
+  to { transform: scale(3); opacity: 0; }
+}
+@keyframes sway {
+  0%, 100% { transform: rotate(-2deg) translateY(0); }
+  50%      { transform: rotate(2deg) translateY(4px); }
+}
+
+.anim-fade-up { animation: fadeUpIn var(--t-cinematic) var(--ease-cinematic) forwards; }
+.anim-bob     { animation: bob 2.4s ease-in-out infinite; }
