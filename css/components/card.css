@@ -1,0 +1,110 @@
+/*
+  CARD — one shared system for Scenario cards and Role cards (per the Master
+  Build Prompt: they share radius/depth/glass/shadow/typography/interaction,
+  and differ only in content and artwork).
+
+  Image handling: .card-art is a FIXED aspect-ratio box. The image is applied
+  via the inline custom property --card-image (set by JS from the data
+  layer's `image` field) and always uses object-fit-equivalent cover
+  positioning. Swapping the image path in data/*.json is the only change
+  ever needed — no card, grid, or layout rule here depends on the image's
+  real dimensions.
+*/
+
+.card {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  position: relative;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  will-change: transform, opacity;
+}
+
+.card-art {
+  aspect-ratio: 4 / 3;
+  background-image: var(--card-image, none);
+  background-size: cover;
+  background-position: center;
+  background-color: #0a0a0a; /* fallback base under the gradient below */
+  position: relative;
+}
+
+/* placeholder atmosphere shown whenever --card-image is unset (no real
+   artwork yet) — purely decorative, sits under any real photo via
+   background-blend, so adding a photo later needs no markup change */
+.card-art::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(142, 22, 22, .5), transparent 60%),
+    linear-gradient(180deg, #1a1a1a, #050505);
+  opacity: var(--card-placeholder-opacity, 1);
+}
+
+.card-art .tag {
+  position: absolute;
+  bottom: var(--space-4);
+  inset-inline-start: var(--space-4);
+  font-size: 10px;
+  letter-spacing: .12em;
+  color: var(--c-secondary);
+  border: 1px solid rgba(232, 201, 153, .4);
+  padding: 3px 8px;
+  border-radius: var(--radius-pill);
+  z-index: 1;
+}
+
+.card-body {
+  padding: var(--space-4) var(--space-4) var(--space-5);
+}
+
+.card-eyebrow {
+  font-size: 10px;
+  color: var(--c-secondary);
+  opacity: .8;
+  margin: 0 0 var(--space-2);
+}
+
+.card-title {
+  margin: 0 0 var(--space-2);
+  font-size: 17px;
+}
+
+.card-text {
+  margin: 0 0 var(--space-3);
+  font-size: var(--fs-body-sm);
+  color: var(--c-text-dim);
+  line-height: 1.7;
+}
+
+.card-info-row {
+  display: flex;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+  flex-wrap: wrap;
+}
+.card-info-row span {
+  font-size: 9.5px;
+  color: var(--c-text);
+  background: rgba(255,255,255,.05);
+  border: 1px solid var(--glass-border);
+  padding: 3px 8px;
+  border-radius: var(--radius-pill);
+}
+
+/* --- role card, smaller variant of the same system --- */
+.role-card {
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--glass-border);
+  background: rgba(255,255,255,.02);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform var(--t-micro) var(--ease-cinematic);
+}
+.role-card:active { transform: scale(.96); }
+.role-card.is-hidden { display: none; }
+.role-card .card-art { aspect-ratio: 4 / 3; }
+.role-card .card-body { padding: var(--space-2) var(--space-3) var(--space-3); }
+.role-card h5 { margin: 0 0 2px; font-size: 12px; }
+.role-card span.role-side { font-size: 9.5px; color: var(--c-secondary); opacity: .8; }

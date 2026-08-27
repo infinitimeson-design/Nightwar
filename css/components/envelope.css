@@ -1,0 +1,121 @@
+/*
+  ENVELOPE — locked interaction, structure Envelope→Seal→Paper→Reveal.
+  States (driven by js/modules/envelope.js via the .is-open class):
+  closed → focused → opening → paper-revealing → revealed → closing → closed
+  CSS only implements the two end-visuals (closed / .is-open); the
+  intermediate motion is entirely transition-driven so no animation frames
+  are hand-coded in JS.
+*/
+
+.envelope-wrap {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-5) 0 var(--space-2);
+}
+
+.envelope {
+  width: 230px;
+  height: 150px;
+  position: relative;
+  cursor: pointer;
+  perspective: 900px;
+}
+
+.envelope .env-label {
+  position: absolute;
+  top: 14px;
+  left: 0; right: 0;
+  text-align: center;
+  font-size: 9px;
+  letter-spacing: .2em;
+  color: rgba(248,238,223,.4);
+  z-index: 1;
+}
+
+.envelope .env-back {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(160deg, #16100c, #050403);
+  border: 1px solid rgba(232,201,153,.18);
+  box-shadow: var(--shadow-deep);
+}
+
+.envelope .env-flap {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 78px;
+  background: linear-gradient(160deg, #1d1510, #0a0705);
+  clip-path: polygon(0 0, 100% 0, 50% 72%);
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  transform-origin: top center;
+  transition: transform var(--t-cinematic) var(--ease-cinematic);
+  z-index: 3;
+  border-bottom: 1px solid rgba(232,201,153,.12);
+}
+
+.envelope .seal {
+  position: absolute;
+  top: 38%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  z-index: 4;
+  background: radial-gradient(circle at 35% 30%, #a52424, #6d1010 70%);
+  box-shadow: 0 4px 10px rgba(0,0,0,.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  letter-spacing: .03em;
+  color: var(--c-text);
+  font-weight: 700;
+  transition: transform var(--t-component) var(--ease-cinematic), opacity var(--t-component) var(--ease-cinematic);
+}
+
+.envelope .paper {
+  position: absolute;
+  left: 8%; right: 8%; bottom: 8px;
+  height: 118px;
+  border-radius: 6px;
+  background: linear-gradient(180deg, var(--c-cream), #ece1cd);
+  color: #1a1310;
+  padding: var(--space-4) var(--space-3);
+  font-size: 11px;
+  line-height: 1.7;
+  box-shadow: 0 10px 30px rgba(0,0,0,.6);
+  transform: translateY(14px);
+  opacity: 0;
+  z-index: 2;
+  transition: transform var(--t-cinematic) var(--ease-cinematic), opacity var(--t-cinematic) var(--ease-cinematic);
+}
+.envelope .paper b { display: block; font-size: 12.5px; margin-bottom: 6px; }
+
+.envelope.is-open .env-flap { transform: rotateX(-165deg); }
+.envelope.is-open .seal { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+.envelope.is-open .paper { transform: translateY(-46px); opacity: 1; }
+
+.envelope-hint {
+  text-align: center;
+  font-size: 11px;
+  color: rgba(248,238,223,.5);
+  margin: var(--space-3) 0 var(--space-1);
+}
+
+.envelope-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-4);
+  height: 40px;
+}
+.envelope-actions .btn {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--t-micro) var(--ease-cinematic);
+  padding: 9px 20px;
+  font-size: 12.5px;
+}
+.envelope.is-open ~ .envelope-actions .btn {
+  opacity: 1;
+  pointer-events: auto;
+}

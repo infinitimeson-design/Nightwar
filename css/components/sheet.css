@@ -1,0 +1,41 @@
+/* SHEET — bottom sheet, used for role details. Two-layer copy per the
+   Master Copy Lock: Narrative Identity vs. exact Gameplay Ability. */
+
+.sheet-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.7);
+  backdrop-filter: blur(6px);
+  z-index: 80;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--t-component) var(--ease-cinematic);
+}
+.sheet-backdrop.is-open { opacity: 1; pointer-events: auto; }
+
+.sheet {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 81;
+  background: linear-gradient(180deg, #100b09, #050403);
+  border: 1px solid var(--glass-border);
+  border-bottom: none;
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  padding: var(--space-6) var(--space-6) 34px;
+  transform: translateY(100%);
+  transition: transform var(--t-cinematic) var(--ease-cinematic);
+  box-shadow: 0 -20px 50px rgba(0,0,0,.6);
+}
+.sheet.is-open { transform: translateY(0); }
+
+.sheet .handle {
+  width: 36px; height: 4px;
+  border-radius: 4px;
+  background: rgba(248,238,223,.25);
+  margin: 0 auto var(--space-5);
+}
+.sheet .sheet-side { font-size: 11px; color: var(--c-secondary); margin-bottom: 4px; }
+.sheet h3 { margin: 0 0 var(--space-3); font-size: 19px; }
+.sheet .sheet-identity { font-size: 13px; color: var(--c-text); opacity: .85; margin: 0 0 var(--space-4); line-height: 1.8; }
+.sheet .ability-label { font-size: 10px; letter-spacing: .1em; color: var(--c-secondary); margin: 0 0 6px; }
+.sheet .sheet-ability { font-size: 13px; line-height: 1.9; color: var(--c-text-dim); margin: 0 0 var(--space-6); }

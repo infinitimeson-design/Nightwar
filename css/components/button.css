@@ -1,0 +1,62 @@
+/* BUTTON — one component, used everywhere. Change look here, not per-section. */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 13px 24px;
+  border-radius: var(--radius-md);
+  font-size: 13.5px;
+  font-weight: 600;
+  border: 1px solid var(--glass-border);
+  background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.015));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--c-text);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  text-decoration: none;
+  transition: transform var(--t-micro) var(--ease-cinematic), box-shadow var(--t-micro) var(--ease-cinematic);
+}
+
+.btn.is-primary {
+  background: linear-gradient(180deg, var(--accent-bg-strong), var(--accent-bg));
+  border-color: var(--accent-border);
+  box-shadow: var(--shadow-accent);
+}
+
+.btn.is-ghost {
+  background: transparent;
+}
+
+.btn.is-full { width: 100%; }
+
+.btn.is-icon {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.btn.is-disabled {
+  opacity: .5;
+  pointer-events: none;
+}
+
+.btn:active {
+  transform: scale(.96);
+}
+
+/* shared tap ripple — appended by js/modules/motion-system.js on any [data-ripple] */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(248, 238, 223, .35);
+  transform: scale(0);
+  animation: rippleOut .6s ease-out;
+  pointer-events: none;
+}
