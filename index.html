@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Night War — شب‌های مافیا</title>
+
+<!--
+  Estedad is the locked typeface. Real font files go in assets/fonts/Estedad/
+  (see the README there); until then this falls back to Vazirmatn (CDN) and
+  finally the system font — the page never breaks or shows missing-font
+  boxes while waiting on the real files.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/fonts/Estedad/estedad.css">
+
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/motion.css">
+<link rel="stylesheet" href="css/components/glass.css">
+<link rel="stylesheet" href="css/components/button.css">
+<link rel="stylesheet" href="css/components/card.css">
+<link rel="stylesheet" href="css/components/nav.css">
+<link rel="stylesheet" href="css/components/envelope.css">
+<link rel="stylesheet" href="css/components/sheet.css">
+<link rel="stylesheet" href="css/sections/hero.css">
+<link rel="stylesheet" href="css/sections/scenarios.css">
+<link rel="stylesheet" href="css/sections/about.css">
+<link rel="stylesheet" href="css/sections/contact.css">
+<link rel="stylesheet" href="css/sections/footer.css">
+</head>
+<body>
+
+<div class="bg-grain"></div>
+<div class="bg-atmosphere"></div>
+<div class="scroll-progress"></div>
+
+<div class="menu-overlay" id="menuOverlay">
+  <a href="#top">خانه</a>
+  <a href="#scenarios">سناریو</a>
+  <a href="#scenarios">نقش‌ها</a>
+  <a href="#about">درباره</a>
+  <a href="#contact">تماس</a>
+</div>
+
+<main>
+  <nav class="topnav glass" id="top">
+    <div class="logo">NIGHT <b>WAR</b></div>
+    <button class="menu-btn" id="menuBtn" aria-label="باز کردن منو" aria-expanded="false">☰</button>
+  </nav>
+
+  <!-- 03/04 HERO -->
+  <section class="hero">
+    <div class="marionette" id="marionette">
+      <svg viewBox="0 0 220 280" role="img" aria-label="عروسک‌گردان">
+        <line class="string" x1="30" y1="0" x2="90" y2="70"></line>
+        <line class="string" x1="190" y1="0" x2="130" y2="70"></line>
+        <line class="string" x1="60" y1="0" x2="70" y2="160"></line>
+        <line class="string" x1="160" y1="0" x2="150" y2="160"></line>
+        <g class="puppet-body anim-sway" id="puppetBody" style="animation: sway 6s ease-in-out infinite;">
+          <ellipse cx="110" cy="90" rx="26" ry="30" fill="#141414" stroke="#8E1616" stroke-width="1.2"/>
+          <rect x="82" y="115" width="56" height="90" rx="18" fill="#0d0d0d" stroke="#E8C999" stroke-opacity="0.25"/>
+          <line x1="85" y1="130" x2="55" y2="190" stroke="#141414" stroke-width="10" stroke-linecap="round"/>
+          <line x1="135" y1="130" x2="165" y2="190" stroke="#141414" stroke-width="10" stroke-linecap="round"/>
+          <line x1="95" y1="205" x2="90" y2="255" stroke="#0d0d0d" stroke-width="12" stroke-linecap="round"/>
+          <line x1="125" y1="205" x2="130" y2="255" stroke="#0d0d0d" stroke-width="12" stroke-linecap="round"/>
+        </g>
+      </svg>
+    </div>
+    <div class="hero-label">شب‌های مافیا</div>
+    <h1 class="hero-title">شب، همه‌چیز را<br>تغییر می‌دهد</h1>
+    <p class="hero-sub">در شهری که حقیقت پشت هر چهره پنهان است، اعتماد همیشه یک ریسک است.</p>
+    <div class="hero-label-bottom">یک بازی از جنس اعتماد و تردید</div>
+    <div class="btn-row">
+      <a class="btn is-primary" href="#scenarios" data-ripple>ورود به بازی</a>
+      <a class="btn is-ghost" href="#scenarios" data-ripple>مشاهده سناریو</a>
+    </div>
+    <div class="scroll-hint anim-bob">اسکرول کن</div>
+  </section>
+
+  <!-- 05 INTRODUCTION -->
+  <section>
+    <p class="eyebrow" data-reveal>NIGHT WAR</p>
+    <h2 class="section-title" data-reveal>اینجا، هر کسی یک نقش دارد</h2>
+    <p class="lede" data-reveal>در هر شب، تصمیم‌ها عوض می‌شوند و هر چهره می‌تواند چیزی را پنهان کرده باشد.</p>
+  </section>
+
+  <!-- 06/07/08 SCENARIOS (carousel + story/roles steps, rendered by JS from data/) -->
+  <section id="scenarios">
+    <p class="eyebrow" data-reveal>سناریوها</p>
+    <h2 class="section-title" data-reveal>هر شب، یک بازی تازه</h2>
+    <p class="lede" data-reveal>سناریوها قوانین، نقش‌ها و مسیر متفاوتی برای بازی می‌سازند.</p>
+
+    <div class="carousel" id="carousel"><!-- js/modules/carousel.js renders scenario cards here --></div>
+    <div class="dots" id="dots"></div>
+
+    <div class="panel-collapse" id="storyPanel">
+      <div id="storyInner"><!-- js/modules/scenario-flow.js renders the story+roles steps here --></div>
+    </div>
+  </section>
+
+  <!-- 19/20 ENVELOPE -->
+  <section>
+    <p class="eyebrow" data-reveal>پرونده</p>
+    <h2 class="section-title" data-reveal>محرمانه</h2>
+    <p class="lede" data-reveal>برای ورود، پاکت را باز کن.</p>
+
+    <div class="envelope-wrap">
+      <div class="envelope" id="envelope">
+        <div class="env-label">NIGHT WAR</div>
+        <div class="paper">
+          <b>پرونده بازی</b>
+          جمعه، ساعت ۲۱:۰۰<br>
+          مکان دقیق پس از هماهنگی با گرداننده اعلام می‌شود.
+        </div>
+        <div class="env-back"></div>
+        <div class="seal">NW</div>
+        <div class="env-flap"></div>
+      </div>
+    </div>
+    <p class="envelope-hint" id="envHint">لمس کن تا باز بشه</p>
+    <div class="envelope-actions">
+      <button class="btn" id="closeEnvBtn" data-ripple>بستن پاکت</button>
+    </div>
+  </section>
+
+  <!-- 23 ABOUT -->
+  <section id="about">
+    <p class="eyebrow" data-reveal>درباره Night War</p>
+    <h2 class="section-title" data-reveal>بازی، فقط بازی نیست</h2>
+    <div class="glass-panel">
+      <p class="about-body" data-reveal>
+        Night War یک تجربه برای کسانی است که از بازی کردن با اعتماد، شک و تصمیم لذت می‌برند.
+        اینجا هر شب یک داستان تازه ساخته می‌شود؛ اما پایان آن را هیچ‌کس از قبل نمی‌داند.
+      </p>
+    </div>
+  </section>
+
+  <!-- 21/22/24/25 ATTENDANCE + CONTACT, merged into one section per project decision -->
+  <section id="contact">
+    <p class="eyebrow" data-reveal>ثبت حضور</p>
+    <h2 class="section-title" data-reveal>شب ادامه دارد</h2>
+    <p class="lede" data-reveal>برای ثبت حضور یا هماهنگی بیشتر، با گرداننده بازی در ارتباط باش.</p>
+    <div class="contact-actions">
+      <a class="btn is-primary is-full" href="tel:+989120000000" data-ripple>تماس</a>
+      <a class="btn is-full" href="https://t.me/nightwarevent" target="_blank" rel="noopener" data-ripple>تلگرام</a>
+      <a class="btn is-full" href="https://instagram.com/nightwarevent" target="_blank" rel="noopener" data-ripple>اینستاگرام</a>
+    </div>
+  </section>
+
+  <!-- 26/27 FOOTER -->
+  <footer id="footer">
+    <canvas class="footer-canvas" id="footerCanvas"></canvas>
+    <div class="footer-fallback-text" id="footerFallbackText">SC DEV</div>
+    <div class="footer-inner">
+      <p class="footer-closing">شب تمام می‌شود. بازی نه.</p>
+      <div class="footer-nav">
+        <a href="#top">خانه</a><a href="#scenarios">سناریو</a><a href="#about">درباره</a><a href="#contact">تماس</a>
+      </div>
+      <div class="footer-icons">
+        <a href="tel:+989120000000" class="btn is-icon" aria-label="تماس">☎</a>
+        <a href="https://t.me/nightwarevent" target="_blank" rel="noopener" class="btn is-icon" aria-label="تلگرام">✈</a>
+        <a href="https://instagram.com/nightwarevent" target="_blank" rel="noopener" class="btn is-icon" aria-label="اینستاگرام">◎</a>
+      </div>
+      <p class="footer-credit">Direct by meti sicily, craft by sc dev</p>
+    </div>
+  </footer>
+</main>
+
+<!-- ROLE DETAIL SHEET (shared, filled by js/modules/role-sheet.js) -->
+<div class="sheet-backdrop" id="sheetBackdrop"></div>
+<div class="sheet" id="sheet">
+  <div class="handle"></div>
+  <div class="sheet-side" id="sheetSide"></div>
+  <h3 id="sheetName"></h3>
+  <p class="sheet-identity" id="sheetIdentity"></p>
+  <p class="ability-label">ABILITY</p>
+  <p class="sheet-ability" id="sheetAbility"></p>
+  <button class="btn is-primary is-full" id="sheetClose" data-ripple>بازگشت</button>
+</div>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
