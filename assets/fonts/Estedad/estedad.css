@@ -1,0 +1,33 @@
+/*
+  Drop the real Estedad font files in this folder (e.g. Estedad-Regular.woff2,
+  Estedad-Bold.woff2) and they'll be picked up automatically — no other file
+  needs to change. Until then, these @font-face rules simply fail to load and
+  every element quietly falls through to Vazirmatn/system-ui, per the
+  --font-primary stack in css/tokens.css. Get the actual files from:
+  https://github.com/aminabedi68/Estedad-Font (or wherever the project's
+  licensed copy lives) and match the weights referenced below.
+*/
+
+@font-face {
+  font-family: 'Estedad';
+  src: url('./Estedad-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Estedad';
+  src: url('./Estedad-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Estedad';
+  src: url('./Estedad-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
